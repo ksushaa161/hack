@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Смарт-квиз — дизайн-проект помещения</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>
+    document.documentElement.classList.add("quiz-ui");
+  </script>
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient__mesh"></div>
+    <div class="ambient__orb ambient__orb--1"></div>
+    <div class="ambient__orb ambient__orb--2"></div>
+    <div class="ambient__orb ambient__orb--3"></div>
+    <div class="ambient__grain"></div>
+  </div>
+
+  <div class="page">
+    <header class="header">
+      <div class="header__badge">Консультация бесплатно</div>
+      <div class="header__brand">
+        <span class="header__brand-mark">Интерьер</span><span class="header__accent">Про</span>
+      </div>
+      <p class="header__tagline">Соберём пожелания за пару минут — подготовим предложение по дизайн-проекту</p>
+    </header>
+
+    <main class="quiz-shell" id="quiz-root" data-total-steps="6">
+      <aside class="quiz-rail quiz-rail--left" aria-hidden="true">
+        <div class="quiz-rail__panel">
+          <svg class="quiz-rail__svg" viewBox="0 0 160 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="railLg" x1="0" y1="0" x2="160" y2="640" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#e8c872" />
+                <stop offset="0.5" stop-color="#8b7cf0" />
+                <stop offset="1" stop-color="#5ee4d4" />
+              </linearGradient>
+            </defs>
+            <rect x="12" y="24" width="136" height="592" rx="12" stroke="url(#railLg)" stroke-width="2.5" opacity="0.85" />
+            <rect x="32" y="48" width="96" height="72" rx="4" stroke="#e8c872" stroke-width="2" opacity="0.75" />
+            <line x1="32" y1="160" x2="128" y2="160" stroke="#8b7cf0" stroke-width="2" opacity="0.65" />
+            <line x1="32" y1="188" x2="108" y2="188" stroke="#8b7cf0" stroke-width="1.5" opacity="0.5" />
+            <rect x="36" y="220" width="88" height="120" rx="3" stroke="#5ee4d4" stroke-width="2" opacity="0.7" />
+            <circle cx="80" cy="280" r="28" stroke="#e8c872" stroke-width="2" opacity="0.6" />
+            <path d="M 24 420 L 80 360 L 136 420" stroke="url(#railLg)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" />
+            <rect x="44" y="440" width="72" height="140" rx="4" stroke="#e8c872" stroke-width="2" opacity="0.55" />
+            <line x1="80" y1="440" x2="80" y2="580" stroke="#5ee4d4" stroke-width="1.5" opacity="0.4" />
+          </svg>
+        </div>
+        <p class="quiz-rail__caption">Планировка</p>
+      </aside>
+
+      <div class="quiz-main">
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-card__shine" aria-hidden="true"></div>
+        <div class="quiz-progress" aria-hidden="true">
+          <div class="quiz-progress__track">
+            <div class="quiz-progress__glow" id="progress-bar"></div>
+          </div>
+        </div>
+        <p class="quiz-step-label" id="step-label" aria-live="polite">
+          <span class="quiz-step-label__dot" aria-hidden="true"></span>
+          <span id="step-label-text">Шаг 1 из 6</span>
+        </p>
+
+        <section class="quiz-step is-active" data-step="0" aria-labelledby="q-room-type">
+          <h2 class="quiz-question" id="q-room-type">Какое помещение вы планируете оформить?</h2>
+          <div class="option-grid option-grid--single" role="radiogroup" aria-label="Тип помещения">
+            <button type="button" class="option-card" data-value="Квартира">Квартира</button>
+            <button type="button" class="option-card" data-value="Частный дом">Частный дом</button>
+            <button type="button" class="option-card" data-value="Офис">Офис</button>
+            <button type="button" class="option-card" data-value="Коммерческое помещение">Коммерческое помещение</button>
+            <button type="button" class="option-card" data-value="Студия / апартаменты">Студия / апартаменты</button>
+            <button type="button" class="option-card" data-value="Другое">Другое</button>
+          </div>
+        </section>
+
+        <section class="quiz-step" data-step="1" aria-labelledby="q-zones">
+          <h2 class="quiz-question" id="q-zones">Какие зоны нужно включить в дизайн-проект?</h2>
+          <p class="quiz-hint">Выберите один или несколько вариантов</p>
+          <div class="option-grid option-grid--multi" id="zones-grid">
+            <label class="option-tile"><input type="checkbox" name="zone" value="Кухня" /> <span>Кухня</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Гостиная" /> <span>Гостиная</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Спальня" /> <span>Спальня</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Детская" /> <span>Детская</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Санузел" /> <span>Санузел</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Прихожая" /> <span>Прихожая</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Кабинет" /> <span>Кабинет</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Гардеробная" /> <span>Гардеробная</span></label>
+            <label class="option-tile"><input type="checkbox" name="zone" value="Балкон / лоджия" /> <span>Балкон / лоджия</span></label>
+            <label class="option-tile option-tile--wide"><input type="checkbox" name="zone" value="Полностью всё помещение" /> <span>Полностью всё помещение</span></label>
+          </div>
+          <p class="field-error" id="zones-error" role="alert" hidden>Выберите хотя бы одну зону</p>
+        </section>
+
+        <section class="quiz-step" data-step="2" aria-labelledby="q-area">
+          <h2 class="quiz-question" id="q-area">Укажите примерную площадь помещения</h2>
+          <div class="slider-block">
+            <p class="slider-value" id="area-display" aria-live="polite">Площадь: 60 м²</p>
+            <input type="range" id="area-slider" min="20" max="300" step="5" value="60" aria-valuemin="20" aria-valuemax="300" aria-valuenow="60" aria-describedby="q-area" />
+            <div class="slider-labels"><span>20 м²</span><span>300 м²</span></div>
+          </div>
+        </section>
+
+        <section class="quiz-step" data-step="3" aria-labelledby="q-style">
+          <h2 class="quiz-question" id="q-style">Какой стиль интерьера вам ближе?</h2>
+          <div class="option-grid option-grid--single option-grid--icons" role="radiogroup" aria-label="Стиль интерьера">
+            <button type="button" class="option-card option-card--style" data-value="Современный"><span class="option-card__emoji" aria-hidden="true">◇</span>Современный</button>
+            <button type="button" class="option-card option-card--style" data-value="Минимализм"><span class="option-card__emoji" aria-hidden="true">▢</span>Минимализм</button>
+            <button type="button" class="option-card option-card--style" data-value="Скандинавский"><span class="option-card__emoji" aria-hidden="true">△</span>Скандинавский</button>
+            <button type="button" class="option-card option-card--style" data-value="Лофт"><span class="option-card__emoji" aria-hidden="true">▣</span>Лофт</button>
+            <button type="button" class="option-card option-card--style" data-value="Неоклассика"><span class="option-card__emoji" aria-hidden="true">◈</span>Неоклассика</button>
+            <button type="button" class="option-card option-card--style" data-value="Классика"><span class="option-card__emoji" aria-hidden="true">◎</span>Классика</button>
+            <button type="button" class="option-card option-card--style option-card--wide" data-value="Пока не определился"><span class="option-card__emoji" aria-hidden="true">?</span>Пока не определился</button>
+          </div>
+        </section>
+
+        <section class="quiz-step" data-step="4" aria-labelledby="q-budget">
+          <h2 class="quiz-question" id="q-budget">Какой бюджет на реализацию интерьера вы рассматриваете?</h2>
+          <div class="option-grid option-grid--single option-grid--budget" role="radiogroup" aria-label="Бюджет">
+            <button type="button" class="option-card" data-value="До 500 000 ₽">До 500 000 ₽</button>
+            <button type="button" class="option-card" data-value="500 000 – 1 000 000 ₽">500 000 – 1 000 000 ₽</button>
+            <button type="button" class="option-card" data-value="1 000 000 – 2 000 000 ₽">1 000 000 – 2 000 000 ₽</button>
+            <button type="button" class="option-card" data-value="От 2 000 000 ₽">От 2 000 000 ₽</button>
+            <button type="button" class="option-card" data-value="Пока не знаю">Пока не знаю</button>
+          </div>
+        </section>
+
+        <section class="quiz-step" data-step="5" aria-labelledby="q-form-title">
+          <h2 class="quiz-question" id="q-form-title">Оставьте контакты, и мы свяжемся с вами по вашему проекту</h2>
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <label for="f-name">Имя</label>
+              <input type="text" id="f-name" name="name" autocomplete="name" placeholder="Как к вам обращаться" />
+            </div>
+            <div class="form-row">
+              <label for="f-phone">Телефон <span class="req">*</span></label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+7 (900) 000-00-00" required />
+              <p class="field-error" id="phone-error" role="alert" hidden></p>
+            </div>
+            <div class="form-row">
+              <label for="f-email">E-mail</label>
+              <input type="email" id="f-email" name="email" autocomplete="email" placeholder="Необязательно" />
+              <p class="field-error" id="email-error" role="alert" hidden></p>
+            </div>
+            <div class="form-row">
+              <label for="f-comment">Комментарий</label>
+              <textarea id="f-comment" name="comment" rows="3" placeholder="Пожелания по проекту"></textarea>
+            </div>
+            <div class="form-row form-row--checkbox">
+              <label class="checkbox-label">
+                <input type="checkbox" id="f-consent" name="consent" required />
+                <span>Я соглашаюсь на обработку персональных данных</span>
+              </label>
+              <p class="field-error" id="consent-error" role="alert" hidden>Необходимо согласие на обработку данных</p>
+            </div>
+            <p class="form-global-error" id="form-global-error" role="alert" hidden>Не удалось отправить заявку. Пожалуйста, попробуйте ещё раз.</p>
+            <button type="submit" class="btn btn--primary btn--submit" id="btn-submit">Получить консультацию</button>
+          </form>
+        </section>
+
+        <section class="quiz-step quiz-step--success" data-step="success" id="success-screen" hidden aria-live="polite">
+          <div class="success-ring" aria-hidden="true">
+            <div class="success-ring__pulse"></div>
+            <div class="success-icon">✓</div>
+          </div>
+          <h2 class="quiz-question quiz-question--success">Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.</h2>
+          <button type="button" class="btn btn--ghost" id="btn-restart">Пройти квиз снова</button>
+        </section>
+
+        <footer class="quiz-nav" id="quiz-nav">
+          <button type="button" class="btn btn--ghost" id="btn-back" disabled>Назад</button>
+          <button type="button" class="btn btn--primary" id="btn-next">Далее</button>
+        </footer>
+      </div>
+      </div>
+
+      <aside class="quiz-rail quiz-rail--right" aria-hidden="true">
+        <div class="quiz-rail__panel">
+          <svg class="quiz-rail__svg" viewBox="0 0 160 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="railRg" x1="160" y1="0" x2="0" y2="640" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#5ee4d4" />
+                <stop offset="0.45" stop-color="#8b7cf0" />
+                <stop offset="1" stop-color="#e8c872" />
+              </linearGradient>
+            </defs>
+            <path d="M 80 32 C 130 120, 130 240, 80 320 C 30 400, 30 520, 80 608" stroke="url(#railRg)" stroke-width="2.5" stroke-linecap="round" opacity="0.8" />
+            <circle cx="80" cy="120" r="36" stroke="#5ee4d4" stroke-width="2.2" opacity="0.75" />
+            <rect x="28" y="200" width="104" height="8" rx="2" fill="#e8c872" opacity="0.35" />
+            <rect x="40" y="224" width="80" height="8" rx="2" fill="#e8c872" opacity="0.25" />
+            <rect x="52" y="248" width="56" height="8" rx="2" fill="#e8c872" opacity="0.18" />
+            <path d="M 20 340 Q 80 300 140 340 L 140 520 Q 80 560 20 520 Z" stroke="#8b7cf0" stroke-width="2" fill="rgba(139,124,240,0.08)" opacity="0.9" />
+            <line x1="24" y1="380" x2="136" y2="380" stroke="#e8c872" stroke-width="1.5" opacity="0.45" stroke-dasharray="8 6" />
+            <line x1="24" y1="420" x2="136" y2="420" stroke="#e8c872" stroke-width="1.5" opacity="0.35" stroke-dasharray="8 6" />
+            <circle cx="80" cy="520" r="48" stroke="url(#railRg)" stroke-width="2" opacity="0.5" />
+            <path d="M 56 520 L 80 496 L 104 520 L 92 548 L 68 548 Z" stroke="#e8c872" stroke-width="1.8" stroke-linejoin="round" opacity="0.55" fill="none" />
+          </svg>
+        </div>
+        <p class="quiz-rail__caption">Стиль · свет</p>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>Смарт-квиз для сбора заявок на дизайн-проект</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
